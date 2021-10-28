@@ -64,7 +64,7 @@ namespace PWA.Shared.Componets
             }//应对首次使用时不存在 Local Storage 的情况
             catch
             {
-                ShowMessage("未检测到本地设置, 已为您加载默认配置");
+                ShowMessage("本地设置出错, 请检查设置");
             }
 
             return Task.CompletedTask;

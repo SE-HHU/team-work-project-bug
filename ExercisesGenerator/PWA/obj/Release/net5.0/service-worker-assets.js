@@ -1,7 +1,7 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-FvpnU6uQ6T7pv\/GspHeBntb+bUA21887X770sVAIE8k=",
+      "hash": "sha256-Vzd39IwDEIP7DXzD19hSifo7D8bSsuYvyjslevOcSzg=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -797,11 +797,11 @@
       "url": "_framework\/Tools.pdb"
     },
     {
-      "hash": "sha256-qjNiIAjaAYk8xtc9l9KyYRW4h1b7lFp+oNcPYIT2OlI=",
+      "hash": "sha256-W8brbVoJboeCO36XdChpik5Z8\/B0WaObv\/QimWTAZ8U=",
       "url": "_framework\/PWA.dll"
     },
     {
-      "hash": "sha256-wkubArn+8nlWgO2iwVVKmLVXzRWd2Shd1XA89DncRXU=",
+      "hash": "sha256-6cjQgklXeP8vVS7icVmhiNqi0PBMFpbYUEc3POhd\/jE=",
       "url": "_framework\/PWA.pdb"
     },
     {
@@ -1661,7 +1661,7 @@
       "url": "js\/Scripts.js"
     },
     {
-      "hash": "sha256-rY9UwMC+mQ9dAD+K\/N4AEf0ayhJiSR8zbNjy+fTYFHM=",
+      "hash": "sha256-HYVdo3OlCJj9z3NJnemxgsQEgsRicdjJrfAgWoUqj2k=",
       "url": "manifest.json"
     },
     {
@@ -1677,5 +1677,5 @@
       "url": "PWA.bundle.scp.css"
     }
   ],
-  "version": "gd5LzZYt"
+  "version": "e1Iw3gya"
 };
