@@ -120,7 +120,7 @@ namespace ToolsUnitTest
 
             unit = new Unit(UnitType.Fraction, new Fraction(16, 3), null);
             Assert.AreEqual(unit.ToHTML(),
-                "5<span class=\"texthidden\">U_</span><sup>1</sup>~<sub>3</sub>");
+                "5<span class=\"fraction\"><span class=\"top\">1</span><span class=\"bottom\">3</span></span>");
 
             unit = new Unit(UnitType.Operator, null, new Operator('+', 1, 1));
             Assert.AreEqual(unit.ToHTML(), "+");

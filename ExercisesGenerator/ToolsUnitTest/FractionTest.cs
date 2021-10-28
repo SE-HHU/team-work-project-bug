@@ -201,15 +201,18 @@ namespace ToolsUnitTest
 
             fraction1 = new Fraction(6, -66);
             Assert.AreEqual(fraction1.ToHTML(),
-                "<span class=\"texthidden\">_</span><sup>-1</sup>~<sub>11</sub>");
+                "<span class=\"fraction\"><span class=\"top\">-1</span>"
+                + "<span class=\"bottom\">11</span></span>");
 
             fraction1 = new Fraction(18, -5);
             Assert.AreEqual(fraction1.ToHTML(),
-                "-3<span class=\"texthidden\">U_</span><sup>3</sup>~<sub>5</sub>");
+                "-3<span class=\"fraction\"><span class=\"top\">3</span>"
+                + "<span class=\"bottom\">5</span></span>");
 
             fraction1 = new Fraction(18, 5);
-            Assert.AreEqual(fraction1.ToHTML(), 
-                "3<span class=\"texthidden\">U_</span><sup>3</sup>~<sub>5</sub>");
+            Assert.AreEqual(fraction1.ToHTML(),
+                "3<span class=\"fraction\"><span class=\"top\">3</span>"
+                + "<span class=\"bottom\">5</span></span>");
         }
     }
 }

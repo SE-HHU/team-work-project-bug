@@ -72,9 +72,11 @@ namespace ToolsUnitTest
             String text = "-17-4U_1~2 * 7 / 9 - (-4U_1~3 + _1~7)";
             list = Expression.StringToExpression(text);
             Assert.AreEqual(Expression.ExpressionToHTML(list),
-                "-17 - 4<span class=\"texthidden\">U_</span><sup>1</sup>~<sub>2</sub> "
-                + "* 7 / 9 - ( -4<span class=\"texthidden\">U_</span><sup>1</sup>~<sub>3</sub>"
-                + " + <span class=\"texthidden\">_</span><sup>1</sup>~<sub>7</sub> ) ");
+                "-17 - 4<span class=\"fraction\"><span class=\"top\">1</span>"
+                +"<span class=\"bottom\">2</span></span> * 7 / 9 - ( -4<span class=\"fraction\">" 
+                + "<span class=\"top\">1</span><span class=\"bottom\">3</span></span>"
+                + " + <span class=\"fraction\"><span class=\"top\">1</span>"
+                + "<span class=\"bottom\">7</span></span> ) ");
         }
 
         [Test]
