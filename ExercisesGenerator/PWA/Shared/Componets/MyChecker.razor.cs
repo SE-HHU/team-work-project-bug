@@ -33,12 +33,11 @@ namespace PWA.Shared.Componets
 
         private WebSettings LocalSettings = new WebSettings();
 
-        protected async override Task<Task> OnInitializedAsync()
+        protected async override Task OnInitializedAsync()
         {
+            JavaScriptInvoke.JS = JS;
             await LoadLocalSettings();
             LocalSettings.SetSettings();
-
-            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -110,9 +109,9 @@ namespace PWA.Shared.Componets
                 }
                 catch (Exception e)
                 {
-                    ShowMessage(e.ToString());
-                    ShowMessage(Exercises.Exercises[i].OriginalProblem);
-                    ShowMessage(Expression.ExpressionToString(postfix));
+                    JavaScriptInvoke.ShowMessage(e.ToString());
+                    JavaScriptInvoke.ShowMessage(Exercises.Exercises[i].OriginalProblem);
+                    JavaScriptInvoke.ShowMessage(Expression.ExpressionToString(postfix));
                 }
 
                 if (Answer.CompareTo(Exercises.Exercises[i].Answer) != 0)
@@ -215,34 +214,25 @@ namespace PWA.Shared.Componets
             {
                 Check();
             }
-            await JS.InvokeVoidAsync("Save", Text, "Grade.txt");
+            await JavaScriptInvoke.SaveToFile(Text, "Grade.txt");
         }
         
         /// <summary>
         /// 重置为默认设置
         /// </summary>
-        private void SetDefault()
+        private async void SetDefault()
         {
             LocalSettings.SetDefault();
-            SaveLocalSettings();
-        }
-
-        /// <summary>
-        /// 弹窗显示消息
-        /// </summary>
-        /// <param name="text">需要显示的消息</param>
-        private async void ShowMessage(String text)
-        {
-            await JS.InvokeVoidAsync("ShowMessage", text);
+            await JavaScriptInvoke.SaveLocalSettings(JsonConvert.SerializeObject(LocalSettings));
         }
 
         /// <summary>
         /// 加载 Local Storage
         /// </summary>
         /// <returns></returns>
-        private async Task<Task> LoadLocalSettings()
+        private async Task LoadLocalSettings()
         {
-            String json = await JS.InvokeAsync<String>("BlazorGetLocalStorage", "LocalSettings");
+            string json = await JavaScriptInvoke.GetLocalSettings();
             WebSettings newSettings;
             try
             {
@@ -254,10 +244,8 @@ namespace PWA.Shared.Componets
             }//应对首次使用时不存在 Local Storage 的情况
             catch
             {
-                ShowMessage("未检测到本地设置, 已为您加载默认配置");
+                JavaScriptInvoke.ShowMessage("未检测到本地设置, 已为您加载默认配置");
             }
-
-            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -265,7 +253,7 @@ namespace PWA.Shared.Componets
         /// </summary>
         private async void SaveLocalSettings()
         {
-            await JS.InvokeVoidAsync("BlazorSetLocalStorage", "LocalSettings", JsonConvert.SerializeObject(LocalSettings));
+            await JavaScriptInvoke.SaveLocalSettings(JsonConvert.SerializeObject(LocalSettings));
             LocalSettings.SetSettings();
         }
     }

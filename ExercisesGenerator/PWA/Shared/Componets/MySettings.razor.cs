@@ -16,6 +16,7 @@ namespace PWA.Shared.Componets
 
         protected async override Task<Task> OnInitializedAsync()
         {
+            JavaScriptInvoke.JS = JS;
             await LoadLocalSettings();
             LocalSettings.SetSettings();
             return Task.CompletedTask;
@@ -23,7 +24,7 @@ namespace PWA.Shared.Componets
 
         public async Task HandleValidSubmit()
         {
-            await JS.InvokeVoidAsync("BlazorSetLocalStorage", "LocalSettings", 
+            await JavaScriptInvoke.SaveLocalSettings(
                 JsonConvert.SerializeObject(LocalSettings));
             LocalSettings.SetSettings();
         }
@@ -38,21 +39,12 @@ namespace PWA.Shared.Componets
         }
 
         /// <summary>
-        /// 弹窗显示消息
-        /// </summary>
-        /// <param name="text">需要显示的消息</param>
-        private async void ShowMessage(String text)
-        {
-            await JS.InvokeVoidAsync("ShowMessage", text);
-        }
-
-        /// <summary>
         /// 加载 Local Storage
         /// </summary>
         /// <returns></returns>
-        private async Task<Task> LoadLocalSettings()
+        private async Task LoadLocalSettings()
         {
-            String json = await JS.InvokeAsync<String>("BlazorGetLocalStorage", "LocalSettings");
+            string json = await JavaScriptInvoke.GetLocalSettings();
             WebSettings newSettings;
             try
             {
@@ -64,10 +56,8 @@ namespace PWA.Shared.Componets
             }//应对首次使用时不存在 Local Storage 的情况
             catch
             {
-                ShowMessage("本地设置出错, 请检查设置");
+                JavaScriptInvoke.ShowMessage("本地设置出错, 请检查设置");
             }
-
-            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -75,7 +65,7 @@ namespace PWA.Shared.Componets
         /// </summary>
         private async void SaveLocalSettings()
         {
-            await JS.InvokeVoidAsync("BlazorSetLocalStorage", "LocalSettings", 
+            await JavaScriptInvoke.SaveLocalSettings(
                 JsonConvert.SerializeObject(LocalSettings));
             LocalSettings.SetSettings();
         }
