@@ -27,6 +27,8 @@ namespace Tools
 
         private static readonly Random random = new Random();
 
+        public static Settings Settings;
+
         public Unit()
         {
             UnitType = UnitType.Integer;
@@ -47,7 +49,7 @@ namespace Tools
             {
                 ChangeType();
             }
-            
+
             switch (UnitType)
             {
                 case UnitType.Integer:
@@ -55,7 +57,7 @@ namespace Tools
                 case UnitType.Fraction:
                     return Fraction.ToString();
                 case UnitType.Operator:
-                    return Operator.Value.ToString();
+                    return Operator.ToString();
                 default:
                     return null;
             }
@@ -79,7 +81,7 @@ namespace Tools
                 case UnitType.Fraction:
                     return Fraction.ToHTML();
                 case UnitType.Operator:
-                    return Operator.Value.ToString();
+                    return Operator.ToHTML();
                 default:
                     return null;
             }
@@ -89,20 +91,30 @@ namespace Tools
         /// 判断Unit是否在范围内
         /// </summary>
         /// <returns>true=>在范围内; false=>不在范围内或Unit是运算符</returns>
-        public bool InRange()
+        public bool InRange(Settings.OperandSettings operand)
         {
             switch (UnitType)
             {
                 case UnitType.Integer:
-                    return (Fraction.Numerator <= Settings.IntegerMaximum)
-                        && (Fraction.Numerator >= Settings.IntegerMinimize);
+                    return (Fraction.Numerator <= operand.IntegerMaximum)
+                        && (Fraction.Numerator >= operand.IntegerMinimize);
                 case UnitType.Fraction:
                     Fraction.Reduce();
-                    long Numerator = Fraction.Numerator % Fraction.Denomination;
-                    long Integer = Fraction.Numerator / Fraction.Denomination;
-                    return (Integer <= Settings.IntegerMaximum
-                        && Integer >= Settings.IntegerMinimize
-                        && Fraction.Denomination <= Settings.DenominationMaximum);
+                    if (operand.OperandType == Settings.OperandType.TrueFraction)
+                    {
+                        return (Fraction.Numerator < Fraction.Denomination)
+                            && (Fraction.Numerator <= operand.NumeratorMaximum)
+                            && (Fraction.Numerator >= operand.NumeratorMinimize)
+                            && (Fraction.Denomination <= operand.DenominationMaximum)
+                            && (Fraction.Denomination >= operand.DenominationMinimize);
+                    }
+                    else
+                    {
+                        return (Fraction.Numerator <= operand.NumeratorMaximum)
+                        && (Fraction.Numerator >= operand.NumeratorMinimize)
+                        && (Fraction.Denomination <= operand.DenominationMaximum)
+                        && (Fraction.Denomination >= operand.DenominationMinimize);
+                    }
                 default:
                     return false;
             }
@@ -112,19 +124,27 @@ namespace Tools
         /// 获取随机操作数
         /// </summary>
         /// <returns></returns>
-        public static Unit GetRandomOperand()
+        public static Unit GetRandomOperand(Settings.OperandSettings operand)
         {
             Unit unit = new Unit();
-            unit.UnitType = (!Settings.AllowFraction) ? UnitType.Integer : (UnitType)(random.Next(0, 2));
+            if (Settings.AllowFraction)
+            {
+                unit.UnitType = (operand.OperandType == Settings.OperandType.Integer)
+                    ? UnitType.Integer : UnitType.Fraction;
+            }
+            else
+            {
+                unit.UnitType = UnitType.Integer;
+            }
 
             if (unit.UnitType == UnitType.Integer)
             {
                 unit.Fraction = new Fraction(
-                    random.Next(Settings.IntegerMinimize, Settings.IntegerMaximum + 1), 1);
+                    random.Next(operand.IntegerMinimize, operand.IntegerMaximum + 1), 1);
             }
             else
             {
-                unit.Fraction = Fraction.GetRandomFraction();
+                unit.Fraction = Fraction.GetRandomFraction(operand);
             }
 
             return unit;
@@ -158,7 +178,7 @@ namespace Tools
                 UnitType = UnitType.Integer;
             }
         }
-        public static Unit operator + (Unit unit1, Unit unit2)
+        public static Unit operator +(Unit unit1, Unit unit2)
         {
             unit1.ChangeType();
             unit2.ChangeType();
@@ -167,7 +187,7 @@ namespace Tools
 
             return unit;
         }
-        public static Unit operator - (Unit unit1, Unit unit2)
+        public static Unit operator -(Unit unit1, Unit unit2)
         {
             unit1.ChangeType();
             unit2.ChangeType();
@@ -176,7 +196,7 @@ namespace Tools
 
             return unit;
         }
-        public static Unit operator * (Unit unit1, Unit unit2)
+        public static Unit operator *(Unit unit1, Unit unit2)
         {
             unit1.ChangeType();
             unit2.ChangeType();
@@ -192,7 +212,7 @@ namespace Tools
         /// <param name="unit2"></param>
         /// <returns></returns>
         /// <exception cref="DivideByZeroException"></exception>
-        public static Unit operator / (Unit unit1, Unit unit2)
+        public static Unit operator /(Unit unit1, Unit unit2)
         {
             Unit unit;
             unit1.ChangeType();

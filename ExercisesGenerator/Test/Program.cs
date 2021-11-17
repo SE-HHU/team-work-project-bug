@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Tools;
 
 namespace Test
@@ -50,20 +51,35 @@ namespace Test
             Settings.AllowDivide = (int.Parse(Console.ReadLine()) & 1) == 1;
             Console.WriteLine("分数: ");
             Settings.AllowFraction = (int.Parse(Console.ReadLine()) & 1) == 1;*/
-
+            
+            Settings Settings = new Settings();
             Settings.ProblemsNumber = 10000;
             Settings.OperatorsNumber = 3;
-            Settings.IntegerMinimize = 0;
-            Settings.IntegerMaximum = 10000;
-            Settings.DenominationMaximum = 10000;
             Settings.AllowParentheses = true;
-            Settings.AllowPlus = true;
-            Settings.AllowSubscribe = true;
-            Settings.AllowMultiply = true;
-            Settings.AllowDivide = true;
             Settings.AllowFraction = true;
+            Settings.Operands = new()
+            {
+                new(Settings.OperandType.FalseFraction,
+                    0, 1000, 0, 2000, 2, 1000),
+                new(Settings.OperandType.FalseFraction,
+                    0, 1000, 0, 2000, 2, 1000),
+                new(Settings.OperandType.FalseFraction,
+                    0, 1000, 0, 2000, 2, 1000),
+                new(Settings.OperandType.FalseFraction,
+                    0, 1000, 0, 2000, 2, 1000),
+                new(Settings.OperandType.FalseFraction,
+                    0, 1000, 0, 2000, 2, 1000),
+            };
+            Settings.Operators = new()
+            {
+                new(true, true, true, true),
+                new(true, true, true, true),
+                new(true, true, true, true),
+            };
 
-            Expression.FillCanUseOperators();
+            Expression.Settings = Settings;
+            Fraction.Settings = Settings;
+            Unit.Settings = Settings;
 
             DateTime time1 = DateTime.Now;
 
@@ -71,8 +87,6 @@ namespace Test
             //习题
             HashSet<String> expressions = new HashSet<string>(Settings.ProblemsNumber + 2);
             //用于去重的HashSet
-
-            Expression.FillCanUseOperators();
 
             for (int i = 1; i <= Settings.ProblemsNumber; i++)
             {
@@ -83,6 +97,9 @@ namespace Test
                 try
                 {
                     answer = Expression.CalculatePostfix(postfix);
+                    if (answer.InRange(Settings.Operands.Last())){
+                        throw new Exception();
+                    }
                 }
                 catch
                 {

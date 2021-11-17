@@ -11,13 +11,15 @@ namespace Tools
     {
 
         public static readonly Unit[] Operator = new Unit[] {
-            new(UnitType.Operator, new(), new('(', 0, 0)),
-            new(UnitType.Operator, new(), new(')', 1, 0)),
-            new(UnitType.Operator, new(), new('+', 2, 1)),
-            new(UnitType.Operator, new(), new('-', 3, 1)),
-            new(UnitType.Operator, new(), new('*', 4, 2)),
-            new(UnitType.Operator, new(), new('/', 5, 2)),
+            new(UnitType.Operator, new(), new('(', 0, 0, '(')),
+            new(UnitType.Operator, new(), new(')', 1, 0, ')')),
+            new(UnitType.Operator, new(), new('+', 2, 1, '+')),
+            new(UnitType.Operator, new(), new('-', 3, 1, '-')),
+            new(UnitType.Operator, new(), new('*', 4, 2, '×')),
+            new(UnitType.Operator, new(), new('/', 5, 2, '÷')),
         };
+
+        public static Settings Settings;
 
         public static List<Unit> CanUseOperatorUnits;
 
@@ -26,22 +28,22 @@ namespace Tools
         /// <summary>
         /// 根据设置生成可用的运算符列表
         /// </summary>
-        public static void FillCanUseOperators()
+        public static void FillCanUseOperators(Settings.OperatorSettings Operators)
         {
             CanUseOperatorUnits = new List<Unit>();
-            if (Settings.AllowPlus)
+            if (Operators.AllowPlus)
             {
                 CanUseOperatorUnits.Add(Operator[2]);
             }//允许加法
-            if (Settings.AllowSubscribe)
+            if (Operators.AllowSubscribe)
             {
                 CanUseOperatorUnits.Add(Operator[3]);
             }//允许减法
-            if (Settings.AllowMultiply)
+            if (Operators.AllowMultiply)
             {
                 CanUseOperatorUnits.Add(Operator[4]);
             }//允许乘法
-            if (Settings.AllowDivide)
+            if (Operators.AllowDivide)
             {
                 CanUseOperatorUnits.Add(Operator[5]);
             }//允许除法
@@ -54,7 +56,7 @@ namespace Tools
         public static List<Unit> GetRandomExpression()
         {
             List<Unit> infix = new List<Unit>(2 * Settings.OperatorsNumber + 3);
-            Unit pre = Unit.GetRandomOperand();
+            Unit pre = Unit.GetRandomOperand(Settings.Operands[0]);
             //为了处理除法, 先生成一个操作数, 此后以一个操作符和一个操作数为一组生成
             int leftParentheses = -2;
             int rightParentheses = -2;
@@ -76,14 +78,26 @@ namespace Tools
             infix.Add(pre);
             for (int j = 0; j < Settings.OperatorsNumber; j++)
             {
+                FillCanUseOperators(Settings.Operators[j]);
                 Unit @operator = CanUseOperatorUnits[random.Next(0, CanUseOperatorUnits.Count)];
-                Unit now = Unit.GetRandomOperand();
-                if (@operator.Operator.Value == '/')
+                Unit now = Unit.GetRandomOperand(Settings.Operands[j + 1]);
+                if (@operator.Operator.Value == '/' && !Settings.AllowFraction)
                 {
 
-                    while (pre.CompareTo(now) >= 0)
+                    while (true)
                     {
-                        now = Unit.GetRandomOperand();
+                        if (pre.UnitType == UnitType.Integer && now.UnitType == UnitType.Integer)
+                        {
+                            if (pre.Fraction.Numerator % now.Fraction.Numerator == 0)
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        now = Unit.GetRandomOperand(Settings.Operands[j + 1]);
                     }
                 }//除法
                 infix.Add(@operator);
@@ -319,7 +333,6 @@ namespace Tools
         /// <returns>计算结果</returns>
         /// <exception cref="ArgumentException">表达式不合法</exception>
         /// <exception cref="ArgumentNullException">表达式为空</exception>
-        /// <exception cref="ArgumentOutOfRangeException">运算结果超出范围限制</exception>
         /// <exception cref="DivideByZeroException">除零错误</exception>
         /// <exception cref="NotSupportedException">存在未定义的运算符</exception>
         public static Unit CalculatePostfix(List<Unit> postfix)
@@ -366,10 +379,6 @@ namespace Tools
                             default:
                                 throw new NotSupportedException();
                         }
-                        if (!value.InRange())
-                        {
-                            throw new ArgumentOutOfRangeException();
-                        }//结果不在限制范围内
                         stack.Push(value);
                     }
                     else

@@ -16,25 +16,12 @@ namespace PWA.Shared.Componets
     {
         [Parameter]
         public TableData Exercises { get; set; }
-        
-        [Parameter]
-        public WebSettings LocalSettings { get; set; }
 
         public static bool ShowAnswer = true;
 
         public String DisplayStatue = "隐藏答案";
 
         public String ProgressStyle = "width:0%";
-
-        protected async override Task<Task> OnInitializedAsync()
-        {
-            JavaScriptInvoke.JS = JS;
-            await LoadLocalSettings();
-            //加载设置, 防止在未设置的情况下生成习题出错
-            LocalSettings.SetSettings();
-
-            return Task.CompletedTask;
-        }
 
         /// <summary>
         /// 生成题目及答案
@@ -46,9 +33,8 @@ namespace PWA.Shared.Componets
             HashSet<String> expressions = new HashSet<string>();
             //用于去重的HashSet
 
-            Expression.FillCanUseOperators();
 
-            for (int i = 1; i <= Settings.ProblemsNumber; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 List<Unit> infix = Expression.GetRandomExpression();
                 List<Unit> postfix = Expression.InfixToPostfix(infix);
@@ -125,20 +111,7 @@ namespace PWA.Shared.Componets
         /// <returns></returns>
         private async Task LoadLocalSettings()
         {
-            string json = await JavaScriptInvoke.GetLocalSettings();
-            WebSettings newSettings;
-            try
-            {
-                newSettings = JsonConvert.DeserializeObject<WebSettings>(json);
-                if (newSettings != null)
-                {
-                    LocalSettings.CopyFrom(newSettings);
-                }
-            }//应对首次使用时不存在 Local Storage 的情况
-            catch
-            {
-                JavaScriptInvoke.ShowMessage("本地设置出错, 请检查设置");
-            }
+            
         }
     }
 }

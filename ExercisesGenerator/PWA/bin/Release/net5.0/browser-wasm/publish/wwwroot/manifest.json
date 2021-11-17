@@ -1,6 +1,6 @@
 {
-  "name": "四则运算习题生成器",
-  "short_name": "习题生成器",
+  "name": "运算⁺⁺",
+  "short_name": "运算⁺⁺",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

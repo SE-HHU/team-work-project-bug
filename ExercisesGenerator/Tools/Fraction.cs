@@ -10,6 +10,8 @@ namespace Tools
 
         private static readonly Random random = new Random();
 
+        public static Settings Settings;
+
         public Fraction()
         {
             Numerator = 1;
@@ -55,7 +57,7 @@ namespace Tools
             }
         }
 
-        public static Fraction operator + (Fraction fraction1, Fraction fraction2)
+        public static Fraction operator +(Fraction fraction1, Fraction fraction2)
         {
             Fraction result = new Fraction(
                 fraction1.Numerator * fraction2.Denomination
@@ -66,7 +68,7 @@ namespace Tools
             return result;
         }
 
-        public static Fraction operator - (Fraction fraction1, Fraction fraction2)
+        public static Fraction operator -(Fraction fraction1, Fraction fraction2)
         {
             Fraction result = new Fraction(
                 fraction1.Numerator * fraction2.Denomination
@@ -77,7 +79,7 @@ namespace Tools
             return result;
         }
 
-        public static Fraction operator * (Fraction fraction1, Fraction fraction2)
+        public static Fraction operator *(Fraction fraction1, Fraction fraction2)
         {
             Fraction result = new Fraction(
                 fraction1.Numerator * fraction2.Numerator,
@@ -94,7 +96,7 @@ namespace Tools
         /// <param name="fraction2"></param>
         /// <returns></returns>
         /// <exception cref="DivideByZeroException">除零错误</exception>
-        public static Fraction operator / (Fraction fraction1, Fraction fraction2)
+        public static Fraction operator /(Fraction fraction1, Fraction fraction2)
         {
             if (fraction2.Numerator == 0)
             {
@@ -112,10 +114,12 @@ namespace Tools
         /// 获取随机真分数
         /// </summary>
         /// <returns>随机生成的真分数</returns>
-        public static Fraction GetRandomFraction()
+        public static Fraction GetRandomFraction(Settings.OperandSettings operand)
         {
-            int denomination = random.Next(1, Settings.DenominationMaximum + 1);
-            int numerator = random.Next(0, denomination);
+            int denomination = random.Next(1, operand.DenominationMaximum + 1);
+            int numeratorMaxinum = (operand.OperandType == Settings.OperandType.TrueFraction)
+                ? denomination : operand.NumeratorMaximum + 1;
+            int numerator = random.Next(0, numeratorMaxinum);
             Fraction fraction = new Fraction(numerator, denomination);
 
             return fraction;
@@ -124,25 +128,18 @@ namespace Tools
         public override string ToString()
         {
             this.Reduce();
-            if (Math.Abs(Numerator) > Math.Abs(Denomination))
-            {
-                long numerator = Numerator % Denomination;
-                long integer = Numerator / Denomination;
-                if (numerator < 0)
-                {
-                    numerator *= -1;
-                }
-
-                return integer + "U_" + numerator + "~" + Denomination;
-            }//分子大于分母
-            else if (Math.Abs(Numerator) < Math.Abs(Denomination))
-            {
-                return "_" + Numerator + "~" + Denomination;
-            }//分子小于分母
-            else
+            if (Numerator == Denomination)
             {
                 return "1";
             }//分子等于分母
+            else if (Denomination == 1)
+            {
+                return Numerator.ToString();
+            }//分母等于1
+            else
+            {
+                return "_" + Numerator + "~" + Denomination;
+            }//普通分数
         }
 
         /// <summary>
@@ -152,27 +149,19 @@ namespace Tools
         public string ToHTML()
         {
             this.Reduce();
-            if (Math.Abs(Numerator) > Math.Abs(Denomination))
-            {
-                long numerator = Numerator % Denomination;
-                long integer = Numerator / Denomination;
-                if (numerator < 0)
-                {
-                    numerator *= -1;
-                }
-
-                return integer + "<span class=\"fraction\"><span class=\"top\">"
-                    + numerator + "</span><span class=\"bottom\">" + Denomination + "</span></span>";
-            }//分子大于分母
-            else if (Math.Abs(Numerator) < Math.Abs(Denomination))
-            {
-                return "<span class=\"fraction\"><span class=\"top\">"
-                    + Numerator + "</span><span class=\"bottom\">" + Denomination + "</span></span>";
-            }//分子小于分母
-            else
+            if (Numerator == Denomination)
             {
                 return "1";
             }//分子等于分母
+            else if (Denomination == 1)
+            {
+                return Numerator.ToString();
+            }//分母等于1
+            else
+            {
+                return "<span class=\"fraction\"><span class=\"top\">"
+                    + Numerator + "</span><span class=\"bottom\">" + Denomination + "</span></span>";
+            }//普通分数
         }
     }
 }
