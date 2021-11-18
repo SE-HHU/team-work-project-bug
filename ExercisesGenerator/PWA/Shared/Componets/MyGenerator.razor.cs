@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tools;
 using System.Text;
-using Newtonsoft.Json;
 using static Tools.TableData;
 
 namespace PWA.Shared.Componets
@@ -103,15 +102,6 @@ namespace PWA.Shared.Componets
             }
             await JavaScriptInvoke.SaveToFile(Problems.ToString(), "Exercises.txt");
             await JavaScriptInvoke.SaveToFile(Answers.ToString(), "Answers.txt");
-        }
-
-        /// <summary>
-        /// 加载 Local Storage
-        /// </summary>
-        /// <returns></returns>
-        private async Task LoadLocalSettings()
-        {
-            
         }
     }
 }

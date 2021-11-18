@@ -30,7 +30,6 @@ D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.Extensions.Primitives.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.JSInterop.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.JSInterop.WebAssembly.dll.gz
-D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Newtonsoft.Json.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\System.IO.Pipelines.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.CSharp.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.VisualBasic.Core.dll.gz
@@ -227,7 +226,6 @@ D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.Extensions.Primitives.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.JSInterop.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.JSInterop.WebAssembly.dll
-D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Newtonsoft.Json.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\System.IO.Pipelines.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.CSharp.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\bin\Release\net5.0\wwwroot\_framework\Microsoft.VisualBasic.Core.dll
@@ -451,7 +449,6 @@ D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\build-gz\Bmx8kcoa.g
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\build-gz\lAlNL6Vf.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\build-gz\awdqc0lp.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\build-gz\B8rMa4ZM.gz
-D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\build-gz\IYNNk3Nj.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\build-gz\wPHGjYyN.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\build-gz\2ng2I3NF.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\build-gz\rpzLTHjH.gz

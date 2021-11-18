@@ -31,6 +31,16 @@
             OnClick='() => NavigationManager.NavigateTo("wrongs")'>
         <Icon Type="close-square" Theme="outline" Style="font-size:x-large" />
     </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("statist")'>
+        <Icon Type="line-chart" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("about")'>
+        <Icon Type="info" Theme="outline" Style="font-size:x-large" />
+    </Button>
     <AntDesign.Title Level="4">
         @ExerciseCount / @settings.ProblemsNumber
     </AntDesign.Title>
@@ -56,17 +66,17 @@
             {
                 <div class="fraction" style="display:table;margin:0 auto;">
                     <div class="col-4 top" style="display:table;margin:0 auto;">
-                        <input class="form-control" placeholder=".col-4" @bind="@inputModel.Numerator" />
+                        <input class="form-control" @bind="@inputModel.Numerator" />
                     </div>
                     <div class="col-4 bottom" style="display:table;margin:0 auto;">
-                        <input class="form-control" placeholder=".col-4" @bind="@inputModel.Denomination" />
+                        <input class="form-control" @bind="@inputModel.Denomination" />
                     </div>
                 </div>
             }
             @if (IsInteger)
             {
                 <div class="col-4" style="display:table;margin:0 auto;">
-                    <input class="form-control" placeholder=".col-1" @bind="@inputModel.Integer" />
+                    <input class="form-control" @bind="@inputModel.Integer" />
                 </div>
             }
         </EditForm>

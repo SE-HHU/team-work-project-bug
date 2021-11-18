@@ -1,5 +1,39 @@
 ﻿@page "/about"
 
+@inject NavigationManager NavigationManager
+
+<Affix OffsetTop="@(0)">
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("")'>
+        <Icon Type="home" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("settings")'>
+        <Icon Type="setting" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("generator")'>
+        <Icon Type="profile" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("exercise")'>
+        <Icon Type="edit" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("wrongs")'>
+        <Icon Type="close-square" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("statist")'>
+        <Icon Type="line-chart" Theme="outline" Style="font-size:x-large" />
+    </Button>
+</Affix>
 <h3>关于本应用</h3>
 <p>四则运算习题生成器 <small>V 2.0.0</small></p>
 <div class="card" id="developers">
@@ -37,7 +71,7 @@
                 </span>
             </li>
             <li class="list-group-item">
-                <span class="oi oi-chevron-right"></span> 张彬彦
+                <span class="oi oi-chevron-right"></span> 李秀吉
                 <span class="badge badge-info">
                     <a href="https://www.baidu.com" target="_blank">Blog</a>
                 </span>
@@ -58,8 +92,8 @@
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="https://github.com/JiaFeiMiao-K-Cat/ExercisesGenerator/issues"
-                    target="_blank">
+                <a href="https://github.com/JiaFeiMiao-K-Cat/Setting/issues"
+                   target="_blank">
                     <span class="oi oi-link-intact"></span> Github Issues
                 </a>
             </li>

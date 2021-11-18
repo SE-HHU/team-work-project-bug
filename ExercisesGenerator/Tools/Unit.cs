@@ -129,8 +129,8 @@ namespace Tools
             Unit unit = new Unit();
             if (Settings.AllowFraction)
             {
-                unit.UnitType = (operand.OperandType == Settings.OperandType.Integer)
-                    ? UnitType.Integer : UnitType.Fraction;
+                unit.UnitType = ((operand.OperandType == Settings.OperandType.Integer)
+                    ? UnitType.Integer : UnitType.Fraction);
             }
             else
             {

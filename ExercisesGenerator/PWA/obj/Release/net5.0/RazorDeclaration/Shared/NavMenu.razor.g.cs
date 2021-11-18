@@ -132,7 +132,7 @@ using Tools;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "D:\TeamProgramming\ExercisesGenerator\PWA\Shared\NavMenu.razor"
+#line 48 "D:\TeamProgramming\ExercisesGenerator\PWA\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

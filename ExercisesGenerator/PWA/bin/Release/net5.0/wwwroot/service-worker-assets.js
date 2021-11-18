@@ -1305,7 +1305,7 @@
       "url": "_content\/AntDesign\/less\/upload\/style\/rtl.less"
     },
     {
-      "hash": "sha256-RwOf7EwXBgvpbxpe3STe92ikiATsVfAzqWd0SC2aBHE=",
+      "hash": "sha256-VJECh\/hUviXYKVMx1Pj8CveaTGaQP7HPZ1KFjA7iRI8=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1411,10 +1411,6 @@
     {
       "hash": "sha256-CUVDXn7tZbnOjcP3RCv7qo06kRLU82YzLqw07Ijzexc=",
       "url": "_framework\/Microsoft.JSInterop.WebAssembly.dll"
-    },
-    {
-      "hash": "sha256-cs8pHUurDt0IqbB8YXPh560au3q3J\/1wRL9jBddRVmE=",
-      "url": "_framework\/Newtonsoft.Json.dll"
     },
     {
       "hash": "sha256-K99lDyL6VrtTDYGRk5o+Q3caW25Uogee\/1e7aIvpgLY=",
@@ -2117,19 +2113,19 @@
       "url": "_framework\/dotnet.5.0.11.js"
     },
     {
-      "hash": "sha256-Z5zQBlDfEvpLEHcJvSU8bQ96k0CBhGkYG1HTZVLio0I=",
+      "hash": "sha256-JfZlzHsQ+C0NT4ABhbuMsltJxsB7dWEn+sYRo04Agu4=",
       "url": "_framework\/Tools.dll"
     },
     {
-      "hash": "sha256-Fcz3BBJiWnH0waqs9nmYpQW5GwYtQo1ixI2n0CIMmq0=",
+      "hash": "sha256-zY5WiLye0rbg2qpCVtmWyrKODphbJg7odrK+JOzb+qo=",
       "url": "_framework\/Tools.pdb"
     },
     {
-      "hash": "sha256-2YTefriyzN9Q7vQraUZIHfgkXLfMRRgDDmZ2uAvZ4dE=",
+      "hash": "sha256-OEJo9ezUwRMFABuhc5Hzsc9aVgojxM4zc8B1fNz3jT8=",
       "url": "_framework\/PWA.dll"
     },
     {
-      "hash": "sha256-zmze4nx5Nq9UX4dvqBSn4h9zlcXCRxttD7kxbI4xPl8=",
+      "hash": "sha256-WZ5S8QOt3jcnjWYuASQWuh7JEHQlKNz95zH4HETP9FY=",
       "url": "_framework\/PWA.pdb"
     },
     {
@@ -2239,10 +2235,6 @@
     {
       "hash": "sha256-rwJzncuGC8360XVz0otK3s3HcCR294uvc2AWdnp5QV0=",
       "url": "_framework\/Microsoft.JSInterop.WebAssembly.dll.gz"
-    },
-    {
-      "hash": "sha256-dnh+NOlVLVPDt\/7o1z+6yeufEse+5\/QWBcLdc\/qmjCo=",
-      "url": "_framework\/Newtonsoft.Json.dll.gz"
     },
     {
       "hash": "sha256-Ing9CiRiY+QY\/BLzqAohFImLd5lcIsGnc796SMoTd4I=",
@@ -2945,7 +2937,7 @@
       "url": "_framework\/dotnet.5.0.11.js.gz"
     },
     {
-      "hash": "sha256-4nyLWxFaMMI6Gkziku44ERFUvVB1ggU4X2Zaihi4Byo=",
+      "hash": "sha256-afaFGk2uYSNyMbw7ef\/eK7rE+cV+TBBuovh\/sNZdK0Q=",
       "url": "_framework\/Tools.dll.gz"
     },
     {
@@ -3065,5 +3057,5 @@
       "url": "PWA.bundle.scp.css"
     }
   ],
-  "version": "CJD3DF7G"
+  "version": "e4vQkNKk"
 };

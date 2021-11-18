@@ -88,6 +88,11 @@ namespace Tools
                     {
                         if (pre.UnitType == UnitType.Integer && now.UnitType == UnitType.Integer)
                         {
+                            if (now.Fraction.Numerator == 0)
+                            {
+                                now = Unit.GetRandomOperand(Settings.Operands[j + 1]);
+                                continue;
+                            }
                             if (pre.Fraction.Numerator % now.Fraction.Numerator == 0)
                             {
                                 break;

@@ -17,6 +17,26 @@
             OnClick='() => NavigationManager.NavigateTo("generator")'>
         <Icon Type="profile" Theme="outline" Style="font-size:x-large" />
     </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("exercise")'>
+        <Icon Type="edit" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("wrongs")'>
+        <Icon Type="close-square" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("statist")'>
+        <Icon Type="line-chart" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("about")'>
+        <Icon Type="info" Theme="outline" Style="font-size:x-large" />
+    </Button>
 </Affix>
 
 <Form Model="@model" LabelColSpan="6" WrapperColSpan="16">

@@ -111,17 +111,26 @@ namespace Tools
         }
 
         /// <summary>
-        /// 获取随机真分数
+        /// 获取随机分数
         /// </summary>
-        /// <returns>随机生成的真分数</returns>
+        /// <returns>随机生成的分数</returns>
         public static Fraction GetRandomFraction(Settings.OperandSettings operand)
         {
-            int denomination = random.Next(1, operand.DenominationMaximum + 1);
-            int numeratorMaxinum = (operand.OperandType == Settings.OperandType.TrueFraction)
-                ? denomination : operand.NumeratorMaximum + 1;
-            int numerator = random.Next(0, numeratorMaxinum);
-            Fraction fraction = new Fraction(numerator, denomination);
-
+            Fraction fraction;
+            while (true)
+            {
+                int denomination = random.Next(1, operand.DenominationMaximum + 1);
+                int numeratorMaxinum = (operand.OperandType == Settings.OperandType.TrueFraction)
+                    ? denomination : operand.NumeratorMaximum + 1;
+                int numerator = random.Next(operand.NumeratorMinimize, numeratorMaxinum);
+                fraction = new Fraction(numerator, denomination);
+                try
+                {
+                    fraction.Reduce();
+                    break;
+                }
+                catch { }
+            }
             return fraction;
         }
 

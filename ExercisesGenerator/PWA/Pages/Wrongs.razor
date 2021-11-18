@@ -17,12 +17,27 @@
     <Button Type="@ButtonType.Primary"
             Shape="@ButtonShape.Circle"
             OnClick='() => NavigationManager.NavigateTo("settings")'>
+        <Icon Type="setting" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("generator")'>
         <Icon Type="profile" Theme="outline" Style="font-size:x-large" />
     </Button>
     <Button Type="@ButtonType.Primary"
             Shape="@ButtonShape.Circle"
             OnClick='() => NavigationManager.NavigateTo("exercise")'>
         <Icon Type="edit" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("statist")'>
+        <Icon Type="line-chart" Theme="outline" Style="font-size:x-large" />
+    </Button>
+    <Button Type="@ButtonType.Primary"
+            Shape="@ButtonShape.Circle"
+            OnClick='() => NavigationManager.NavigateTo("about")'>
+        <Icon Type="info" Theme="outline" Style="font-size:x-large" />
     </Button>
     @if (RedoMode)
     {
@@ -88,10 +103,10 @@ else
                 {
                     <div class="fraction" style="display:table;margin:0 auto;">
                         <div class="col-4 top" style="display:table;margin:0 auto;">
-                            <input class="form-control" placeholder=".col-4" @bind="@inputModel.Numerator" />
+                            <input class="form-control" @bind="@inputModel.Numerator" />
                         </div>
                         <div class="col-4 bottom" style="display:table;margin:0 auto;">
-                            <input class="form-control" placeholder=".col-4" @bind="@inputModel.Denomination" />
+                            <input class="form-control" @bind="@inputModel.Denomination" />
                         </div>
                     </div>
                 }

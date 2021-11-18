@@ -543,7 +543,6 @@ D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Microsoft.Extensions.Primitives.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Microsoft.JSInterop.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Microsoft.JSInterop.WebAssembly.dll
-D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Newtonsoft.Json.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\OneOf.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\System.IO.Pipelines.dll
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\TG.Blazor.IndexedDB.dll
@@ -1099,7 +1098,6 @@ D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Microsoft.Extensions.Primitives.dll.br
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Microsoft.JSInterop.dll.br
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Microsoft.JSInterop.WebAssembly.dll.br
-D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Newtonsoft.Json.dll.br
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\OneOf.dll.br
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\System.IO.Pipelines.dll.br
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\TG.Blazor.IndexedDB.dll.br
@@ -1654,7 +1652,6 @@ D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Microsoft.Extensions.Primitives.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Microsoft.JSInterop.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Microsoft.JSInterop.WebAssembly.dll.gz
-D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\Newtonsoft.Json.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\OneOf.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\System.IO.Pipelines.dll.gz
 D:\TeamProgramming\ExercisesGenerator\PWA\obj\Release\net5.0\browser-wasm\PubTmp\Out\wwwroot\_framework\TG.Blazor.IndexedDB.dll.gz
