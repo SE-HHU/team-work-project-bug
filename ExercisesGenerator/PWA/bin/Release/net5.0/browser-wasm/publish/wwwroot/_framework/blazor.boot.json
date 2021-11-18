@@ -194,8 +194,8 @@
       "OneOf.dll": "sha256-K99lDyL6VrtTDYGRk5o+Q3caW25Uogee\/1e7aIvpgLY=",
       "System.IO.Pipelines.dll": "sha256-3ET+mpR7F058YRj9YaLHOVXBqOW6iUxtIpeiKPYw4PA=",
       "TG.Blazor.IndexedDB.dll": "sha256-PXwHYNKn8m1bIIAm4lMpQfVsy35UuzEGnohqzmrkyHs=",
-      "Tools.dll": "sha256-JfZlzHsQ+C0NT4ABhbuMsltJxsB7dWEn+sYRo04Agu4=",
-      "PWA.dll": "sha256-OEJo9ezUwRMFABuhc5Hzsc9aVgojxM4zc8B1fNz3jT8="
+      "Tools.dll": "sha256-R2uaRl75YXdkQPkkjbxHnO\/3YaAWNdq9mdET2OK887k=",
+      "PWA.dll": "sha256-50McOeJN0tM1nunbKKBz1jvFJNLTl+8SWGTy9iUMkCE="
     },
     "lazyAssembly": null,
     "pdb": null,

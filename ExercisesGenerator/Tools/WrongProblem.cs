@@ -26,5 +26,16 @@ namespace Tools
         //错误次数
         public int TotalTimes { get; set; }
         //总次数
+        public double WrongRate
+        {
+            get
+            {
+                return (double) WrongTimes / TotalTimes;
+            }
+            set
+            {
+                
+            }
+        }
     }
 }

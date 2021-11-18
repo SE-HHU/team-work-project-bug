@@ -17,10 +17,17 @@ namespace PWA.Pages
             public int Integer { get; set; } = 0;
             public int Numerator { get; set; } = 0;
             public int Denomination { get; set; } = 0;
+
+            public void Refresh()
+            {
+                Integer = 0;
+                Numerator = 0;
+                Denomination = 0;
+            }
         }
         private InputModel inputModel = new() { };
 
-        private Tools.Settings settings = SettingModel.model.settings;
+        private SettingModel.Model model = SettingModel.model;
 
         List<Unit> Problem;
 
@@ -42,33 +49,33 @@ namespace PWA.Pages
 
         string NewProblemTitle = "开始";
 
+        private bool IsLoading = false;
+
         public async void NewProblem()
         {
-            if (ExerciseCount == settings.ProblemsNumber)
+            inputModel.Refresh();
+            if (ExerciseCount == model.settings.ProblemsNumber)
             {
                 counter = 0;
                 timer?.Dispose();
-                await _message.Success("恭喜你又完成了一组练习");
                 ExerciseCount = 0;
                 NewProblemTitle = "开始";
                 CheckStyle = @"oi oi-question-mark";
                 Problem = new List<Unit>();
+                Answer = new Unit();
                 IsFraction = false;
                 IsInteger = false;
                 StateHasChanged();
+                await _message.Success("恭喜你又完成了一组练习");
                 return;
             }
-            counter = settings.ThinkTime;
-            timer?.Dispose();
-            NewProblemTitle = "下一题";
-            CheckStyle = @"oi oi-question-mark";
             while (true)
             {
                 try
                 {
                     Problem = Expression.GetRandomExpression();
                     Answer = Expression.CalculatePostfix(Expression.InfixToPostfix(Problem));
-                    if (Answer.InRange(settings.Operands.Last()))
+                    if (Answer.InRange(model.settings.Operands.Last()))
                     {
                         break;
                     }
@@ -93,14 +100,26 @@ namespace PWA.Pages
                 IsInteger = false;
                 IsFraction = true;
             }
+            counter = model.settings.ThinkTime;
+            timer?.Dispose();
+            NewProblemTitle = "下一题";
+            CheckStyle = @"oi oi-question-mark";
             ExerciseCount++;
             StartTimer();
         }
 
         public async void SkipProblem()
         {
+            if (Problem == null || Problem.Count == 0)
+            {
+                return;
+            }
+            IsLoading = true;
+            StateHasChanged();
             await DataBaseTools.AddErrorProblem(Problem, false);
             NewProblem();
+            IsLoading = false;
+            StateHasChanged();
         }
 
         protected override async Task OnInitializedAsync()
@@ -108,6 +127,7 @@ namespace PWA.Pages
             DataBaseTools.DbFactory = DbFactory;
             SettingModel.JS = JS;
             await SettingModel.Init();
+            await base.OnInitializedAsync();
         }
 
         public async void Check()

@@ -33,7 +33,6 @@ namespace PWA.Pages
             StateHasChanged();
         }
 
-        private int total => wrongs.Count();
         private int pageSize { get; set; } = 10;
         private int pageIndex { get; set; } = 1;
         private void HandlePageChange(PaginationEventArgs args)
@@ -56,10 +55,16 @@ namespace PWA.Pages
             public int Integer { get; set; } = 0;
             public int Numerator { get; set; } = 0;
             public int Denomination { get; set; } = 0;
+            public void Refresh()
+            {
+                Integer = 0;
+                Numerator = 0;
+                Denomination = 0;
+            }
         }
         private InputModel inputModel = new() { };
 
-        private Tools.Settings settings = SettingModel.model.settings;
+        private SettingModel.Model model = SettingModel.model;
 
         List<WrongProblem> redoWrongs;
 
@@ -82,12 +87,14 @@ namespace PWA.Pages
         int RedoCount = 0;
 
         string NextProblemTitle = "开始";
+
+        private bool IsLoading = false;
         public async void NextProblem()
         {
+            inputModel.Refresh();
             if (RedoCount == redoWrongs.Count)
             {
                 timer?.Dispose();
-                await _message.Success("恭喜你又重做了一遍错题");
                 RedoCount = 0;
                 wrongs = DataBaseTools.Wrongs;
                 CloneList();
@@ -95,15 +102,13 @@ namespace PWA.Pages
                 NextProblemTitle = "开始";
                 CheckStyle = @"oi oi-question-mark";
                 Problem = new List<Unit>();
+                Answer = new Unit();
                 IsFraction = false;
                 IsInteger = false;
                 StateHasChanged();
+                await _message.Success("恭喜你又重做了一遍错题");
                 return;
             }
-            NextProblemTitle = "下一题";
-            counter = settings.ThinkTime;
-            timer?.Dispose();
-            CheckStyle = @"oi oi-question-mark";
             Problem = Expression.StringToExpression(redoWrongs[RedoCount].Problem);
             Answer = Expression.CalculatePostfix(Expression.InfixToPostfix(Problem));
             RedoCount++;
@@ -117,14 +122,26 @@ namespace PWA.Pages
                 IsInteger = false;
                 IsFraction = true;
             }
+            NextProblemTitle = "下一题";
+            counter = model.settings.ThinkTime;
+            timer?.Dispose();
+            CheckStyle = @"oi oi-question-mark";
             StartTimer();
         }
 
         public async void SkipProblem()
         {
+            if (Problem == null || Problem.Count == 0)
+            {
+                return;
+            }
+            IsLoading = true;
+            StateHasChanged();
             await DataBaseTools.AddErrorProblem(Problem, false);
             await DataBaseTools.AddRedoStatist(false);
             NextProblem();
+            IsLoading = false;
+            StateHasChanged();
         }
         public async void Check()
         {

@@ -58,14 +58,19 @@
 @if (!RedoMode)
 {
     <Table TItem="Tools.WrongProblem"
-           DataSource="@wrongs.Skip((pageIndex - 1) * pageSize).Take(pageSize)"
+           DataSource="@wrongs.Skip((pageIndex-1)*pageSize).Take(pageSize)"
            Responsive="false"
-           Bordered=@true>
+           Bordered=@true
+           PageSize="@pageSize">
         <ChildContent>
             <AntDesign.Column @bind-Field="@context.ProblemHTML">
                 @(new MarkupString(context.ProblemHTML))
             </AntDesign.Column>
-            <AntDesign.Column Title="错误率" Field="@((double)context.WrongTimes / context.TotalTimes)" Sortable />
+            <AntDesign.Column Title="错误率" @bind-Field="@context.WrongRate" Sortable
+                              SorterCompare
+                              ="@((v1, v2)=>v1.CompareTo(v2))">
+                @((100 * context.WrongRate).ToString("0.00")) %
+            </AntDesign.Column>
             <AntDesign.Column @bind-Field="@context.FirstDate" Format="yyyy-MM-dd" Sortable />
             <ActionColumn>
                 <Space>
@@ -76,7 +81,7 @@
         <PaginationTemplate>
             <div style="display: flex; align-items: center">
                 <Pagination Class="my-custom-pagination"
-                            Total="@total"
+                            Total="@wrongs.Count"
                             PageSize="pageSize"
                             Current="pageIndex"
                             ShowSizeChanger="@true"
@@ -87,56 +92,57 @@
 }
 else
 {
-    <div style="display:table;margin:0 auto;">
-        <p style="display:table;margin:0 auto; font-size:larger;">@(new MarkupString(Tools.Expression.ExpressionToHTML(@Problem)))</p>
-        <p></p>
-        <Button Type="@ButtonType.Primary"
-                @onclick="NextProblem"
-                Icon="edit"
-                Style="display:table;margin:0 auto;">
-            @NextProblemTitle
-        </Button>
-        <p></p>
-        <div id="answer" style="display:table;margin:0 auto;">
-            <EditForm Model="@inputModel" OnValidSubmit="@Check">
-                @if (IsFraction)
-                {
-                    <div class="fraction" style="display:table;margin:0 auto;">
-                        <div class="col-4 top" style="display:table;margin:0 auto;">
-                            <input class="form-control" @bind="@inputModel.Numerator" />
-                        </div>
-                        <div class="col-4 bottom" style="display:table;margin:0 auto;">
-                            <input class="form-control" @bind="@inputModel.Denomination" />
-                        </div>
-                    </div>
-                }
-                @if (IsInteger)
-                {
-                    <div class="col-4" style="display:table;margin:0 auto;">
-                        <input class="form-control" placeholder=".col-1" @bind="@inputModel.Integer" />
-                    </div>
-                }
-            </EditForm>
-            <p></p>
-            <div style="display:table;margin:0 auto;">
-                <span class="@CheckStyle"></span>
-            </div>
+    <Spin Spinning=@IsLoading Delay=0>
+        <div style="display:table;margin:0 auto;">
+            <p style="display:table;margin:0 auto; font-size:larger;">@(new MarkupString(Tools.Expression.ExpressionToHTML(@Problem)))</p>
             <p></p>
             <Button Type="@ButtonType.Primary"
-                    HtmlType="submit"
-                    @onclick="Check"
-                    Icon="check-square"
+                    @onclick="NextProblem"
+                    Icon="edit"
                     Style="display:table;margin:0 auto;">
-                提交
+                @NextProblemTitle
             </Button>
-            <Button Type="@ButtonType.Default"
-                    @onclick="SkipProblem"
-                    Icon="step-forward"
-                    Style="display:table;margin:0 auto;"
-                    Danger>
-                跳过
-            </Button>
+            <p></p>
+            <div id="answer" style="display:table;margin:0 auto;">
+                <EditForm Model="@inputModel" OnValidSubmit="@Check">
+                    @if (IsFraction)
+                    {
+                        <div class="fraction" style="display:table;margin:0 auto;">
+                            <div class="col-4 top" style="display:table;margin:0 auto;">
+                                <input class="form-control" @bind="@inputModel.Numerator" />
+                            </div>
+                            <div class="col-4 bottom" style="display:table;margin:0 auto;">
+                                <input class="form-control" @bind="@inputModel.Denomination" />
+                            </div>
+                        </div>
+                    }
+                    @if (IsInteger)
+                    {
+                        <div class="col-4" style="display:table;margin:0 auto;">
+                            <input class="form-control" placeholder=".col-1" @bind="@inputModel.Integer" />
+                        </div>
+                    }
+                </EditForm>
+                <p></p>
+                <div style="display:table;margin:0 auto;">
+                    <span class="@CheckStyle"></span>
+                </div>
+                <p></p>
+                <Button Type="@ButtonType.Primary"
+                        HtmlType="submit"
+                        @onclick="Check"
+                        Icon="check-square"
+                        Style="display:table;margin:0 auto;">
+                    提交
+                </Button>
+                <Button Type="@ButtonType.Default"
+                        @onclick="SkipProblem"
+                        Icon="step-forward"
+                        Style="display:table;margin:0 auto;"
+                        Danger>
+                    跳过
+                </Button>
+            </div>
         </div>
-    </div>
-
+    </Spin>
 }
