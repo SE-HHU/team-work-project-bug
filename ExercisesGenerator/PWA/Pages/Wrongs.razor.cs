@@ -26,10 +26,13 @@ namespace PWA.Pages
         }
         public async void Delete(long Id)
         {
+            IsLoading = true;
+            StateHasChanged();
             await DataBaseTools.RemoveErrorProblem(Id);
             wrongs = DataBaseTools.Wrongs;
             CloneList();
             Shuffle(redoWrongs);
+            IsLoading = false;
             StateHasChanged();
         }
 
@@ -86,7 +89,7 @@ namespace PWA.Pages
 
         int RedoCount = 0;
 
-        string NextProblemTitle = "开始";
+        bool IsFirstProblem = true;
 
         private bool IsLoading = false;
         public async void NextProblem()
@@ -99,7 +102,7 @@ namespace PWA.Pages
                 wrongs = DataBaseTools.Wrongs;
                 CloneList();
                 Shuffle(redoWrongs);
-                NextProblemTitle = "开始";
+                IsFirstProblem = true;
                 CheckStyle = @"oi oi-question-mark";
                 Problem = new List<Unit>();
                 Answer = new Unit();
@@ -122,7 +125,7 @@ namespace PWA.Pages
                 IsInteger = false;
                 IsFraction = true;
             }
-            NextProblemTitle = "下一题";
+            IsFirstProblem = false;
             counter = model.settings.ThinkTime;
             timer?.Dispose();
             CheckStyle = @"oi oi-question-mark";
@@ -145,6 +148,8 @@ namespace PWA.Pages
         }
         public async void Check()
         {
+            IsLoading = true;
+            StateHasChanged();
             Unit unit = new Unit();
             if (IsInteger)
             {
@@ -175,6 +180,7 @@ namespace PWA.Pages
                     await DataBaseTools.AddRedoStatist(false);
                 }
             }
+            IsLoading = false;
             StateHasChanged();
         }
 

@@ -59,7 +59,7 @@ namespace ToolsUnitTest
             String text = "-17-4U_1~2 * 7 / 9 - (-4U_1~3 + _1~7)";
              list = Expression.StringToExpression(text);
             Assert.AreEqual(Expression.ExpressionToString(list),
-                "-17 - 4U_1~2 * 7 / 9 - ( -4U_1~3 + _1~7 ) ");
+                "-17 - _9~2 * 7 / 9 - ( _-13~3 + _1~7 ) ");
         }
 
         [Test]
@@ -69,14 +69,12 @@ namespace ToolsUnitTest
             Assert.AreEqual(Expression.ExpressionToHTML(list), null);
             list = new List<Unit>();
             Assert.AreEqual(Expression.ExpressionToHTML(list), null);
-            String text = "-17-4U_1~2 * 7 / 9 - (-4U_1~3 + _1~7)";
+            String text = "-17 - _9~2 * 7 / 9 - ( _-13~3 + _1~7 )";
             list = Expression.StringToExpression(text);
             Assert.AreEqual(Expression.ExpressionToHTML(list),
-                "-17 - 4<span class=\"fraction\"><span class=\"top\">1</span>"
-                +"<span class=\"bottom\">2</span></span> * 7 / 9 - ( -4<span class=\"fraction\">" 
-                + "<span class=\"top\">1</span><span class=\"bottom\">3</span></span>"
-                + " + <span class=\"fraction\"><span class=\"top\">1</span>"
-                + "<span class=\"bottom\">7</span></span> ) ");
+                "-17 - <span class=\"fraction\"><span class=\"top\">9</span>"
+                + "<span class=\"bottom\">2</span></span> × 7 ÷ 9 - ( 0 ) 3 + <span class=\"fraction\">"
+                + "<span class=\"top\">1</span><span class=\"bottom\">7</span></span> ) ");
         }
 
         [Test]
@@ -117,9 +115,10 @@ namespace ToolsUnitTest
         [Test]
         public void TestCalculatePostfix()
         {
-            Settings.IntegerMaximum = int.MaxValue;
-            Settings.IntegerMinimize = int.MinValue;
-            Settings.DenominationMaximum = int.MaxValue;
+            Settings.OperandSettings operand = new Settings.OperandSettings();
+            operand.IntegerMaximum = 100;
+            operand.IntegerMinimize = 0;
+            operand.DenominationMaximum = 100;
             String text = "-17-4U_1~2 * 7 / 9 - (-4U_1~3 + _1~7)";
             List<Unit> infix = Expression.StringToExpression(text);
             List<Unit> postfix = Expression.InfixToPostfix(infix);
@@ -211,25 +210,6 @@ namespace ToolsUnitTest
                 exception = e;
             }
             Assert.AreEqual(typeof(NotSupportedException), exception.GetType());
-
-            Settings.IntegerMaximum = 0;
-            Settings.IntegerMinimize = 10;
-            Settings.DenominationMaximum = 10;
-            postfix = new List<Unit> {
-                new Unit(UnitType.Integer, new Fraction(6, 1), null),
-                new Unit(UnitType.Integer, new Fraction(6, 1), null),
-                new Unit(UnitType.Operator, null, new Operator('+', 2, 1)),
-            };
-            exception = null;
-            try
-            {
-                Expression.CalculatePostfix(postfix);
-            }
-            catch (Exception e)
-            {
-                exception = e;
-            }
-            Assert.AreEqual(typeof(ArgumentOutOfRangeException), exception.GetType());
         }
 
         [Test]

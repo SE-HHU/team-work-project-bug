@@ -86,12 +86,17 @@ namespace PWA.Pages
                     Statists[i].RedoWrongTimes, "再次错误数量");
             }
         }
+
+        bool IsLoading = false;
         async Task ChangeData()
         {
+            IsLoading = true;
+            StateHasChanged();
             await DataBaseTools.Refresh();
             statists = DataBaseTools.Statists;
             ConvertToExerciseData(statists);
             ConvertToRedoData(statists);
+            IsLoading = false;
             StateHasChanged();
         }
 

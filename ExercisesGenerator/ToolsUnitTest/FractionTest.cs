@@ -187,10 +187,10 @@ namespace ToolsUnitTest
             Assert.AreEqual(fraction1.ToString(), "_-1~11");
 
             fraction1 = new Fraction(18, -5);
-            Assert.AreEqual(fraction1.ToString(), "-3U_3~5");
+            Assert.AreEqual(fraction1.ToString(), "_-18~5");
 
             fraction1 = new Fraction(18, 5);
-            Assert.AreEqual(fraction1.ToString(), "3U_3~5");
+            Assert.AreEqual(fraction1.ToString(), "_18~5");
         }
 
         [Test]
@@ -206,12 +206,12 @@ namespace ToolsUnitTest
 
             fraction1 = new Fraction(18, -5);
             Assert.AreEqual(fraction1.ToHTML(),
-                "-3<span class=\"fraction\"><span class=\"top\">3</span>"
+                "<span class=\"fraction\"><span class=\"top\">-18</span>"
                 + "<span class=\"bottom\">5</span></span>");
 
             fraction1 = new Fraction(18, 5);
             Assert.AreEqual(fraction1.ToHTML(),
-                "3<span class=\"fraction\"><span class=\"top\">3</span>"
+                "<span class=\"fraction\"><span class=\"top\">18</span>"
                 + "<span class=\"bottom\">5</span></span>");
         }
     }

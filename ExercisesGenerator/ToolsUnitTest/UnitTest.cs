@@ -14,25 +14,29 @@ namespace ToolsUnitTest
         [Test]
         public void TestInRange()
         {
-            Settings.IntegerMinimize = 0;
-            Settings.IntegerMaximum = 100;
-            Settings.DenominationMaximum = 100;
+            Settings.OperandSettings operand = new Settings.OperandSettings();
+            operand.IntegerMinimize = 0;
+            operand.IntegerMaximum = 100;
+            operand.NumeratorMinimize = 1;
+            operand.NumeratorMaximum = 100;
+            operand.DenominationMinimize = 2;
+            operand.DenominationMaximum = 100;
 
             Unit unit = new Unit();
 
-            Assert.IsTrue(unit.InRange());
+            Assert.IsTrue(unit.InRange(operand));
 
             unit = new Unit(UnitType.Fraction, new Fraction(10, 1000), null);
-            Assert.IsTrue(unit.InRange());
+            Assert.IsTrue(unit.InRange(operand));
 
             unit = new Unit(UnitType.Operator, new Fraction(10, 1000), null);
-            Assert.IsFalse(unit.InRange());
+            Assert.IsFalse(unit.InRange(operand));
 
             unit = new Unit(UnitType.Fraction, new Fraction(10009, 1000), null);
-            Assert.IsFalse(unit.InRange());
+            Assert.IsFalse(unit.InRange(operand));
 
             unit = new Unit(UnitType.Fraction, new Fraction(1010009, 99), null);
-            Assert.IsFalse(unit.InRange());
+            Assert.IsFalse(unit.InRange(operand));
         }
 
         [Test]
@@ -70,7 +74,7 @@ namespace ToolsUnitTest
             Assert.IsTrue(unit1.CompareTo(unit2) > 0);
             Assert.IsTrue(unit2.CompareTo(unit1) < 0);
         }
-        
+
         [Test]
         public void TestChangeType()
         {
@@ -99,7 +103,7 @@ namespace ToolsUnitTest
             Assert.AreEqual(unit.ToString(), "15");
 
             unit = new Unit(UnitType.Fraction, new Fraction(16, 3), null);
-            Assert.AreEqual(unit.ToString(), "5U_1~3");
+            Assert.AreEqual(unit.ToString(), "_16~3");
 
             unit = new Unit(UnitType.Operator, null, new Operator('+', 1, 1));
             Assert.AreEqual(unit.ToString(), "+");
@@ -120,10 +124,10 @@ namespace ToolsUnitTest
 
             unit = new Unit(UnitType.Fraction, new Fraction(16, 3), null);
             Assert.AreEqual(unit.ToHTML(),
-                "5<span class=\"fraction\"><span class=\"top\">1</span><span class=\"bottom\">3</span></span>");
+                "<span class=\"fraction\"><span class=\"top\">16</span><span class=\"bottom\">3</span></span>");
 
             unit = new Unit(UnitType.Operator, null, new Operator('+', 1, 1));
-            Assert.AreEqual(unit.ToHTML(), "+");
+            Assert.AreEqual(unit.ToHTML(), "\0");
 
             unit = new Unit((UnitType)4, null, new Operator('+', 1, 1));
             Assert.IsTrue(unit.ToHTML() == null);

@@ -18,7 +18,7 @@ namespace ToolsUnitTest
             Node node = new Node(new Unit(UnitType.Integer, new Fraction(), null));
             Assert.AreEqual(node.ToString(), "1()()");
             node.RightChild = new Node(new Unit(UnitType.Fraction, new Fraction(49, 3), null));
-            Assert.AreEqual(node.ToString(), "1()(16U_1~3()())");
+            Assert.AreEqual(node.ToString(), "1()(_49~3()())");
         }
 
         [Test]

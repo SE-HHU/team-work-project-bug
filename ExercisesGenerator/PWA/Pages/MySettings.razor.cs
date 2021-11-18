@@ -327,9 +327,16 @@ namespace PWA.Pages
             new("真分数", Tools.Settings.OperandType.TrueFraction),
             new("假分数", Tools.Settings.OperandType.FalseFraction),
         };
+
+        bool IsLoading = false;
         async void SaveSetting()
         {
+            IsLoading = true;
+            StateHasChanged();
             await SettingModel.SaveSetting();
+            IsLoading = false;
+            StateHasChanged();
+            await _message.Success("保存成功");
         }
     }
 }

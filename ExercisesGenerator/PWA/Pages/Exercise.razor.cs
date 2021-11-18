@@ -37,6 +37,7 @@ namespace PWA.Pages
 
         bool IsFraction = false;
         bool IsInteger = false;
+        bool IsFirstProblem = true;
 
         private static System.Timers.Timer timer;
         private int counter = 0;
@@ -46,8 +47,6 @@ namespace PWA.Pages
         }
 
         int ExerciseCount = 0;
-
-        string NewProblemTitle = "开始";
 
         private bool IsLoading = false;
 
@@ -59,8 +58,8 @@ namespace PWA.Pages
                 counter = 0;
                 timer?.Dispose();
                 ExerciseCount = 0;
-                NewProblemTitle = "开始";
                 CheckStyle = @"oi oi-question-mark";
+                IsFirstProblem = true;
                 Problem = new List<Unit>();
                 Answer = new Unit();
                 IsFraction = false;
@@ -102,9 +101,9 @@ namespace PWA.Pages
             }
             counter = model.settings.ThinkTime;
             timer?.Dispose();
-            NewProblemTitle = "下一题";
             CheckStyle = @"oi oi-question-mark";
             ExerciseCount++;
+            IsFirstProblem = false;
             StartTimer();
         }
 
@@ -132,6 +131,8 @@ namespace PWA.Pages
 
         public async void Check()
         {
+            IsLoading = true;
+            StateHasChanged();
             Unit unit = new Unit();
             if (IsInteger)
             {
@@ -160,6 +161,7 @@ namespace PWA.Pages
                     await DataBaseTools.AddErrorProblem(Problem, false);
                 }
             }
+            IsLoading = false;
             StateHasChanged();
         }
 

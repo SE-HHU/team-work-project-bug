@@ -54,12 +54,14 @@
     <div style="display:table;margin:0 auto;">
         <p style="display:table;margin:0 auto; font-size:larger;">@(new MarkupString(Tools.Expression.ExpressionToHTML(@Problem)))</p>
         <p></p>
-        <Button Type="@ButtonType.Primary"
-                @onclick="NewProblem"
-                Icon="edit"
-                Style="display:table;margin:0 auto;">
-            @NewProblemTitle
-        </Button>
+        @if (IsFirstProblem) {
+            <Button Type="@ButtonType.Primary"
+                    @onclick="NewProblem"
+                    Icon="edit"
+                    Style="display:table;margin:0 auto;">
+                开始
+            </Button> 
+        }
         <p></p>
         <div id="answer" style="display:table;margin:0 auto;">
             <EditForm Model="@inputModel" OnValidSubmit="@Check">
