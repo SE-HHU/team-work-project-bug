@@ -195,7 +195,7 @@
       "System.IO.Pipelines.dll": "sha256-3ET+mpR7F058YRj9YaLHOVXBqOW6iUxtIpeiKPYw4PA=",
       "TG.Blazor.IndexedDB.dll": "sha256-PXwHYNKn8m1bIIAm4lMpQfVsy35UuzEGnohqzmrkyHs=",
       "Tools.dll": "sha256-R2uaRl75YXdkQPkkjbxHnO\/3YaAWNdq9mdET2OK887k=",
-      "PWA.dll": "sha256-0mgOoYqbhnO34DV4DlCtygMq1AwLbP9sAVykSysEfdM="
+      "PWA.dll": "sha256-PkRuAPJclNWZTPq0CArmPAxZDYse0sCQU65w7yoLGMI="
     },
     "lazyAssembly": null,
     "pdb": null,

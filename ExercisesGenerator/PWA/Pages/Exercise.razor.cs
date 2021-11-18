@@ -124,6 +124,7 @@ namespace PWA.Pages
         protected override async Task OnInitializedAsync()
         {
             DataBaseTools.DbFactory = DbFactory;
+            await DataBaseTools.Refresh();
             SettingModel.JS = JS;
             await SettingModel.Init();
             await base.OnInitializedAsync();

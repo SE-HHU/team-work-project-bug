@@ -1305,7 +1305,7 @@
       "url": "_content\/AntDesign\/less\/upload\/style\/rtl.less"
     },
     {
-      "hash": "sha256-I+7wR9SmbPZsip+7As3UhO6AxUCfavxOp\/SdldAI5C8=",
+      "hash": "sha256-jJEhfVWSluM2lwYDoCr2sdz21frYpPP5jMzOs1bwZ2U=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -2121,11 +2121,11 @@
       "url": "_framework\/Tools.pdb"
     },
     {
-      "hash": "sha256-94GFv6sCR4bUvrALmky5JEAyjQiA094vIZQ0CQHGd7s=",
+      "hash": "sha256-HtMmBuc44QhkRtxopmhR4YgUoxNl3T0ObMaxE2fUdgM=",
       "url": "_framework\/PWA.dll"
     },
     {
-      "hash": "sha256-uy5sYjsUlRHTxm+tgsAPZWlVdgpBqQoWAeDjUBXy33w=",
+      "hash": "sha256-NVt2alZZ+dSHnK7aaSdaEZWLQ8s2X1TWbWYjCxRRb\/Y=",
       "url": "_framework\/PWA.pdb"
     },
     {
@@ -3057,5 +3057,5 @@
       "url": "PWA.bundle.scp.css"
     }
   ],
-  "version": "16j5AQI3"
+  "version": "erstVHbj"
 };

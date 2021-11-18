@@ -2197,11 +2197,11 @@
       "url": "_framework\/Tools.dll"
     },
     {
-      "hash": "sha256-0mgOoYqbhnO34DV4DlCtygMq1AwLbP9sAVykSysEfdM=",
+      "hash": "sha256-PkRuAPJclNWZTPq0CArmPAxZDYse0sCQU65w7yoLGMI=",
       "url": "_framework\/PWA.dll"
     },
     {
-      "hash": "sha256-Za0v35aCII6J5Z0vjNnh0hDI4S\/\/MPVElbY669vo0MU=",
+      "hash": "sha256-FaZy1oOo65xom3nmjmvJZDilPifCvZ9xnkWQlnAxEtE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -2209,5 +2209,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "3OjmmoWW"
+  "version": "aAJWCc7H"
 };

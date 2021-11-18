@@ -28,7 +28,6 @@ namespace PWA.Shared.Models
                 "BlazorGetLocalStorage", "Settings");
             string value = await JS.InvokeAsync<string>(
                 "BlazorGetLocalStorage", "SettingsNumber");
-            Console.WriteLine(value);
             if (value != null && DefaultSettings.Default.ContainsKey(value))
             {
                 model.value = value;
@@ -38,10 +37,8 @@ namespace PWA.Shared.Models
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine(DefaultSettings.Default[value]);
                     model.settings = JsonSerializer.Deserialize<Settings>
                         (DefaultSettings.Default[value]);
-                    Console.WriteLine(JsonSerializer.Serialize<Settings>(model.settings));
                     await SaveSetting();
                 }
             }

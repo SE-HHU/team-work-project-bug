@@ -15,10 +15,10 @@ namespace PWA.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            SettingModel.JS = JS;
-            await SettingModel.Init();
             DataBaseTools.DbFactory = DbFactory;
             await DataBaseTools.Refresh();
+            SettingModel.JS = JS;
+            await SettingModel.Init();
             wrongs = DataBaseTools.Wrongs;
             CloneList();
             Shuffle(redoWrongs);
@@ -97,6 +97,7 @@ namespace PWA.Pages
             inputModel.Refresh();
             if (RedoCount == redoWrongs.Count)
             {
+                counter = 0;
                 timer?.Dispose();
                 RedoCount = 0;
                 wrongs = DataBaseTools.Wrongs;

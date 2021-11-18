@@ -202,12 +202,12 @@
       "netstandard.dll": "sha256-mbIVAluJ7cAx0vUQshB\/c1zEIK5JcYwIYxo\/BQ\/meRU=",
       "System.Private.CoreLib.dll": "sha256-FrZbEyy47f3RDuj77R5oHUGxSGEDgRRxykTjImrLqfM=",
       "Tools.dll": "sha256-R2uaRl75YXdkQPkkjbxHnO\/3YaAWNdq9mdET2OK887k=",
-      "PWA.dll": "sha256-0mgOoYqbhnO34DV4DlCtygMq1AwLbP9sAVykSysEfdM="
+      "PWA.dll": "sha256-PkRuAPJclNWZTPq0CArmPAxZDYse0sCQU65w7yoLGMI="
     },
     "lazyAssembly": null,
     "pdb": {
       "Tools.pdb": "sha256-f5qtyHV6g+3UiMzI6OJrVqSefQoXioLEIUYLu37c+6w=",
-      "PWA.pdb": "sha256-W39mLu3n8y1pxL4d2ADEvOzk6Pd58qGENDvqV5JsSj4="
+      "PWA.pdb": "sha256-OPTgRXrk4pJrYGFqxYHf7ZW0YNicAHAsX2HdC1EVk0Q="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-5ttRwTa4Rar530elwLdfGDeH9I9NX9MPyDl6zLi9uug=",
