@@ -57,7 +57,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-rA3zaxEukFVSIsGge7fR6PhPOiWTJ7ET4i1QSeIF76I=",
+      "hash": "sha256-lXCY03XGsByoJZAUUaLrNrGZwipJTi+O3BsvS9l40Gg=",
       "url": "index.html"
     },
     {
@@ -73,11 +73,11 @@
       "url": "js\/jquery-3.6.0.min.js"
     },
     {
-      "hash": "sha256-2FrLG\/eDNY7\/HACNySW2y1tC1V0J8fLlTHlzGIgFnGA=",
+      "hash": "sha256-9amSI5BGZHkMKHPFwngxWUn2x1jH6rf99jjPIvnjKlg=",
       "url": "js\/Scripts.js"
     },
     {
-      "hash": "sha256-hciZ5lMs8P8XQDAKX3aH8G7d1Rrqd2YMO2h43K69vLE=",
+      "hash": "sha256-SRm8KCpwe+amj61vCGzOhWHv20pMCwOknTRxHe3ZYuY=",
       "url": "manifest.json"
     },
     {
@@ -2209,5 +2209,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "aAJWCc7H"
+  "version": "wG443+jX"
 };

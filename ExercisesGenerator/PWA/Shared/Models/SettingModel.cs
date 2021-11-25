@@ -22,6 +22,10 @@ namespace PWA.Shared.Models
 
         public static IJSRuntime JS;
 
+        /// <summary>
+        /// 获取本地设置, 若无本地设置, 取默认值
+        /// </summary>
+        /// <returns></returns>
         public static async Task Init()
         {
             string json = await JS.InvokeAsync<string>(

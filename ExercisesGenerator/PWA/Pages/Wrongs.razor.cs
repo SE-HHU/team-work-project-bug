@@ -11,12 +11,16 @@ namespace PWA.Pages
 {
     public partial class Wrongs
     {
+        //部分代码同Exercise.razor.cs
+
         List<WrongProblem> wrongs = DataBaseTools.Wrongs;
+        //错题
 
         protected override async Task OnInitializedAsync()
         {
             DataBaseTools.DbFactory = DbFactory;
             await DataBaseTools.Refresh();
+            //优先更新数据库
             SettingModel.JS = JS;
             await SettingModel.Init();
             wrongs = DataBaseTools.Wrongs;
@@ -24,6 +28,11 @@ namespace PWA.Pages
             Shuffle(redoWrongs);
             await base.OnInitializedAsync();
         }
+
+        /// <summary>
+        /// 删除错题
+        /// </summary>
+        /// <param name="Id">错题ID</param>
         public async void Delete(long Id)
         {
             IsLoading = true;
@@ -69,7 +78,7 @@ namespace PWA.Pages
 
         private SettingModel.Model model = SettingModel.model;
 
-        List<WrongProblem> redoWrongs;
+        List<WrongProblem> redoWrongs; //用于重做的错题集, 乱序
 
         List<Unit> Problem;
 
@@ -207,6 +216,11 @@ namespace PWA.Pages
         }
 
         private static Random rng = new Random();
+
+        /// <summary>
+        /// 生成乱序版错题集
+        /// </summary>
+        /// <param name="list">需要打乱顺序的错题集</param>
         public static void Shuffle(List<WrongProblem> list)
         {
             int n = list.Count;
@@ -220,6 +234,9 @@ namespace PWA.Pages
             }
         }
 
+        /// <summary>
+        /// 复制wrongs到redoWrongs
+        /// </summary>
         private void CloneList()
         {
             redoWrongs = new List<WrongProblem>(wrongs.Count);

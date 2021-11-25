@@ -32,6 +32,7 @@ function PrintDiv(ID) {
     win.document.write(
         '<html><head><link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />'
         + '<link href="css/app.css" rel="stylesheet" />'
+        + '<link href="_content/AntDesign/css/ant-design-blazor.css" rel="stylesheet" />'
         + '<link href="PWA.styles.css" rel="stylesheet" /></head><body>'
         + needPrint.outerHTML + '</body>'
         + "</html>");

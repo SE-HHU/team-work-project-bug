@@ -12,9 +12,15 @@ namespace PWA.Shared.Models
         public static IIndexedDbFactory DbFactory { get; set; }
 
         public static List<WrongProblem> Wrongs = new List<WrongProblem>();
+        //错题集
 
         public static List<Statist> Statists = new List<Statist>();
+        //统计数据
 
+        /// <summary>
+        /// 刷新数据库
+        /// </summary>
+        /// <returns></returns>
         public static async Task Refresh()
         {
             Console.WriteLine(DbFactory == null);
@@ -23,6 +29,11 @@ namespace PWA.Shared.Models
             Statists = db.Statists.ToList();
         }
 
+        /// <summary>
+        /// 增加统计数据
+        /// </summary>
+        /// <param name="IsRight">是否正确</param>
+        /// <returns></returns>
         public static async Task AddStatist(bool IsRight)
         {
             using var db = await DbFactory.Create<MyDataBase>();
@@ -57,6 +68,12 @@ namespace PWA.Shared.Models
             await db.SaveChanges();
             await Refresh();
         }
+
+        /// <summary>
+        /// 增加重做的统计数据
+        /// </summary>
+        /// <param name="IsRight">是否正确</param>
+        /// <returns></returns>
         public static async Task AddRedoStatist(bool IsRight)
         {
             using var db = await DbFactory.Create<MyDataBase>();
@@ -91,6 +108,13 @@ namespace PWA.Shared.Models
             await db.SaveChanges();
             await Refresh();
         }
+
+        /// <summary>
+        /// 增加错题记录
+        /// </summary>
+        /// <param name="Problem">错题</param>
+        /// <param name="IsRight">是否做对</param>
+        /// <returns></returns>
         public static async Task AddErrorProblem(List<Unit> Problem, bool IsRight)
         {
             if (Problem == null)
@@ -136,6 +160,12 @@ namespace PWA.Shared.Models
             await AddStatist(IsRight);
             await Refresh();
         }
+
+        /// <summary>
+        /// 删除错题
+        /// </summary>
+        /// <param name="Id">错题</param>
+        /// <returns></returns>
         public static async Task RemoveErrorProblem(long Id)
         {
             using var db = await DbFactory.Create<MyDataBase>();

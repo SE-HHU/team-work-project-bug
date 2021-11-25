@@ -289,7 +289,12 @@ namespace PWA.Pages
                 model.settings.OperatorsNumber = value;
                 OnChangeOperatorsNumber(value);
             }
-        }
+        }//运算符数量的封装, 用于动态调整List大小
+
+        /// <summary>
+        /// 调整Liast的大小
+        /// </summary>
+        /// <param name="number">List大小</param>
         void OnChangeOperatorsNumber(int number)
         {
             Tools.Settings.OperatorSettings[] Operators
@@ -333,6 +338,7 @@ namespace PWA.Pages
         {
             IsLoading = true;
             StateHasChanged();
+            //刷新UI, 防止多次点击出现问题
             await SettingModel.SaveSetting();
             IsLoading = false;
             StateHasChanged();

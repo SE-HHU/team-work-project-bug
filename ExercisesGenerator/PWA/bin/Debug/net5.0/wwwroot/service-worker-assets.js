@@ -1305,7 +1305,7 @@
       "url": "_content\/AntDesign\/less\/upload\/style\/rtl.less"
     },
     {
-      "hash": "sha256-jJEhfVWSluM2lwYDoCr2sdz21frYpPP5jMzOs1bwZ2U=",
+      "hash": "sha256-sLvJ6bhk98+LuAjzyRKd22T3GXRi8aIFVWnWeF7aaTE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -2121,11 +2121,11 @@
       "url": "_framework\/Tools.pdb"
     },
     {
-      "hash": "sha256-HtMmBuc44QhkRtxopmhR4YgUoxNl3T0ObMaxE2fUdgM=",
+      "hash": "sha256-9ZgfcJf4StXnMBmQSTLPBy\/C9K1MA5SeQZtpF31SNvU=",
       "url": "_framework\/PWA.dll"
     },
     {
-      "hash": "sha256-NVt2alZZ+dSHnK7aaSdaEZWLQ8s2X1TWbWYjCxRRb\/Y=",
+      "hash": "sha256-1sQW9Rp3E7R07W9WYshpFfCIfyBRHBYSOCRT5HyLi1s=",
       "url": "_framework\/PWA.pdb"
     },
     {
@@ -3013,7 +3013,7 @@
       "url": "js\/jquery-3.6.0.min.js"
     },
     {
-      "hash": "sha256-2FrLG\/eDNY7\/HACNySW2y1tC1V0J8fLlTHlzGIgFnGA=",
+      "hash": "sha256-9amSI5BGZHkMKHPFwngxWUn2x1jH6rf99jjPIvnjKlg=",
       "url": "js\/Scripts.js"
     },
     {
@@ -3057,5 +3057,5 @@
       "url": "PWA.bundle.scp.css"
     }
   ],
-  "version": "erstVHbj"
+  "version": "8UvJlaO2"
 };

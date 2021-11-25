@@ -14,6 +14,11 @@ namespace PWA.Pages
             statist.Date = DateTime.Today;
             await base.OnInitializedAsync();
         }
+
+        /// <summary>
+        /// 添加统计数据
+        /// </summary>
+        /// <returns></returns>
         async Task AddStatist()
         {
             using var db = await DbFactory.Create<MyDataBase>();

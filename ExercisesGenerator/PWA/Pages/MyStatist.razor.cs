@@ -14,9 +14,9 @@ namespace PWA.Pages
 
         List<Tools.Statist> statists = DataBaseTools.Statists;
 
-        DataItem[] ExerciseData;
+        DataItem[] ExerciseData;//练习情况
 
-        DataItem[] RedoData;
+        DataItem[] RedoData;//重做情况
         protected override async Task OnInitializedAsync()
         {
             SettingModel.JS = JS;
@@ -59,6 +59,11 @@ namespace PWA.Pages
                 this.type = type;
             }
         }
+
+        /// <summary>
+        /// 获得做题情况
+        /// </summary>
+        /// <param name="Statists">统计表</param>
         void ConvertToExerciseData(List<Tools.Statist> Statists)
         {
             ExerciseData = new DataItem[2 * Statists.Count];
@@ -73,6 +78,10 @@ namespace PWA.Pages
             }
         }
 
+        /// <summary>
+        /// 获得重做情况
+        /// </summary>
+        /// <param name="Statists">统计表</param>
         void ConvertToRedoData(List<Tools.Statist> Statists)
         {
             RedoData = new DataItem[2 * Statists.Count];
@@ -92,10 +101,15 @@ namespace PWA.Pages
         {
             IsLoading = true;
             StateHasChanged();
+            //刷新UI, 防止多次点击出现问题
+
+            //更新数据
             await DataBaseTools.Refresh();
             statists = DataBaseTools.Statists;
             ConvertToExerciseData(statists);
             ConvertToRedoData(statists);
+            //更新数据
+
             IsLoading = false;
             StateHasChanged();
         }

@@ -91,7 +91,7 @@ namespace PWA.Pages
             new("假分数", Tools.Settings.OperandType.FalseFraction),
         };
 
-        string JSON;
+        string JSON;//设置项的json形式, 在页面文本框中显示
         void SaveSetting()
         {
             JSON = JsonSerializer.Serialize<Tools.Settings>(model.settings);
